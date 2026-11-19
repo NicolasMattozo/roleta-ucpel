@@ -1,0 +1,584 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+
+  /* Literal Palette Tokens — @biomedicina_ucpel (Botanical Ivory & Forest Pine + Estética Plum) */
+  --paper-ivory: #f7f8f4;
+  --paper-white: #ffffff;
+  --sage-tint: #ebf2ed;
+  --sage-circle: #c9dcd1;
+  --pine-ink: #1e2721;
+  --pine-muted: #4b5a50;
+  --forest-brand: #205937;
+  --forest-brand-hover: #174329;
+  --olive-accent: #7ba943;
+  --plum-accent: #725387;
+  --lilac-soft: #decbe9;
+  --amber-pip: #d9a72a;
+  --hairline-light: #d7e2da;
+  --control-border-light: #5c6e62;
+  --error-light: #b42318;
+  --error-bg-light: #fef3f2;
+  --success-light: #175c38;
+  --success-bg-light: #ebf6ef;
+
+  /* Dark Botanical Pine Tokens */
+  --pine-night: #101512;
+  --pine-surface: #171e1a;
+  --pine-surface-alt: #1f2923;
+  --ivory-ink: #f0f4f1;
+  --sage-ink: #b6c7bc;
+  --forest-dark-brand: #7ec498;
+  --forest-dark-btn: #2b7a4b;
+  --forest-dark-btn-hover: #22633c;
+  --plum-dark: #c9aee0;
+  --hairline-dark: #2c3a31;
+  --control-border-dark: #85998c;
+  --error-dark: #fda29b;
+  --error-bg-dark: #381718;
+  --success-dark: #8ce0ad;
+  --success-bg-dark: #143222;
+
+  /* Semantic Tokens (fallback via prefers-color-scheme) */
+  --bg-page: var(--paper-ivory);
+  --bg-surface: var(--paper-white);
+  --bg-surface-soft: var(--sage-tint);
+  --text-primary: var(--pine-ink);
+  --text-secondary: var(--pine-muted);
+  --brand-primary: var(--forest-brand);
+  --brand-btn: var(--forest-brand);
+  --brand-btn-hover: var(--forest-brand-hover);
+  --brand-btn-ink: #ffffff;
+  --brand-plum: var(--plum-accent);
+  --border-hairline: var(--hairline-light);
+  --border-control: var(--control-border-light);
+  --error-ink: var(--error-light);
+  --error-bg: var(--error-bg-light);
+  --success-ink: var(--success-light);
+  --success-bg: var(--success-bg-light);
+  --focus-ring: var(--forest-brand);
+  --scrollbar-track: #edf2ee;
+  --scrollbar-thumb: #7b8f82;
+
+  @media (prefers-color-scheme: dark) {
+    --bg-page: var(--pine-night);
+    --bg-surface: var(--pine-surface);
+    --bg-surface-soft: var(--pine-surface-alt);
+    --text-primary: var(--ivory-ink);
+    --text-secondary: var(--sage-ink);
+    --brand-primary: var(--forest-dark-brand);
+    --brand-btn: var(--forest-dark-btn);
+    --brand-btn-hover: var(--forest-dark-btn-hover);
+    --brand-plum: var(--plum-dark);
+    --border-hairline: var(--hairline-dark);
+    --border-control: var(--control-border-dark);
+    --error-ink: var(--error-dark);
+    --error-bg: var(--error-bg-dark);
+    --success-ink: var(--success-dark);
+    --success-bg: var(--success-bg-dark);
+    --focus-ring: var(--forest-dark-brand);
+    --scrollbar-track: #18201b;
+    --scrollbar-thumb: #687c70;
+  }
+
+  @supports (color: light-dark(white, black)) {
+    --bg-page: light-dark(var(--paper-ivory), var(--pine-night));
+    --bg-surface: light-dark(var(--paper-white), var(--pine-surface));
+    --bg-surface-soft: light-dark(var(--sage-tint), var(--pine-surface-alt));
+    --text-primary: light-dark(var(--pine-ink), var(--ivory-ink));
+    --text-secondary: light-dark(var(--pine-muted), var(--sage-ink));
+    --brand-primary: light-dark(var(--forest-brand), var(--forest-dark-brand));
+    --brand-btn: light-dark(var(--forest-brand), var(--forest-dark-btn));
+    --brand-btn-hover: light-dark(var(--forest-brand-hover), var(--forest-dark-btn-hover));
+    --brand-plum: light-dark(var(--plum-accent), var(--plum-dark));
+    --border-hairline: light-dark(var(--hairline-light), var(--hairline-dark));
+    --border-control: light-dark(var(--control-border-light), var(--control-border-dark));
+    --error-ink: light-dark(var(--error-light), var(--error-dark));
+    --error-bg: light-dark(var(--error-bg-light), var(--error-bg-dark));
+    --success-ink: light-dark(var(--success-light), var(--success-dark));
+    --success-bg: light-dark(var(--success-bg-light), var(--success-bg-dark));
+    --focus-ring: light-dark(var(--forest-brand), var(--forest-dark-brand));
+    --scrollbar-track: light-dark(#edf2ee, #18201b);
+    --scrollbar-thumb: light-dark(#7b8f82, #687c70);
+  }
+
+  accent-color: var(--brand-primary);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.font-editorial {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+h1,
+h2,
+h3,
+th {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+/* Hides content visually while keeping it in the accessibility tree */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.skip-link:focus {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 9999;
+  padding-block: 0.75rem;
+  padding-inline: 1.25rem;
+  border-radius: 0.5rem;
+  background-color: var(--brand-btn);
+  color: var(--brand-btn-ink);
+  font-weight: 700;
+  text-decoration: none;
+  outline: 3px solid var(--amber-pip);
+  outline-offset: 2px;
+}
+
+:where(a:any-link, button, input, select, textarea, summary, [tabindex="0"]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Superfície minimalista inspirada no estilo editorial @biomedicina_ucpel */
+.biomed-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: 1.25rem;
+}
+
+/* ============================================================================
+   Formulários & Validação após interação (:user-invalid + fallback)
+   ============================================================================ */
+.roleta-input {
+  font: inherit;
+  font-size: max(1rem, 1em);
+  min-block-size: 48px;
+  inline-size: 100%;
+  padding-block: 0.65rem;
+  padding-inline: 0.9rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid var(--border-control);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+@media (pointer: coarse) {
+  .roleta-input,
+  .roleta-btn {
+    min-block-size: 52px;
+  }
+}
+
+.roleta-input:is(:user-invalid, .user-invalid-fallback) {
+  border-color: var(--error-ink);
+  background-color: var(--error-bg);
+}
+
+.roleta-input:is(:user-valid, .user-valid-fallback) {
+  border-color: var(--brand-primary);
+}
+
+.error-msg {
+  color: var(--error-ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-block-start: 0.35rem;
+}
+
+/* ============================================================================
+   Navegação editorial minimalista (navbar guide — aria-current="page")
+   ============================================================================ */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 40px;
+  padding-block: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--text-primary);
+  font-weight: 600;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    border-block-end: 2px solid var(--brand-primary);
+  }
+}
+
+/* ============================================================================
+   Abas acessíveis minimalistas (tabs guide)
+   ============================================================================ */
+.biomed-tablist {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  scrollbar-width: thin;
+}
+
+.biomed-tab {
+  position: relative;
+  flex: none;
+  min-block-size: 44px;
+  padding-block: 0.65rem;
+  padding-inline: 0.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.biomed-tab:focus-visible {
+  outline-offset: -3px;
+}
+
+.biomed-tab:hover:not([aria-selected="true"]) {
+  color: var(--text-primary);
+}
+
+.biomed-tab[aria-selected="true"] {
+  color: var(--text-primary);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    border-block-end: 2px solid var(--brand-primary);
+  }
+}
+
+/* ============================================================================
+   Animação da Roleta (compositor-friendly, respeitando prefers-reduced-motion)
+   ============================================================================ */
+.roulette-rotor {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .roulette-rotor {
+    transition-property: transform;
+    transition-duration: var(--spin-duration, 4600ms);
+    transition-timing-function: cubic-bezier(0.11, 0.85, 0.14, 1);
+  }
+
+  .roulette-pointer-spinning {
+    animation: pointer-tick 0.15s ease-in-out infinite alternate;
+    transform-origin: 50% 10px;
+  }
+}
+
+@keyframes pointer-tick {
+  from {
+    transform: rotate(-4deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+/* ============================================================================
+   Native <dialog> Top Layer Animation + Scroll Containment
+   ============================================================================ */
+dialog.biomed-dialog {
+  margin: auto;
+  max-inline-size: min(30rem, calc(100dvw - 2rem));
+  inline-size: 100%;
+  padding: 0;
+  border: 1px solid var(--border-hairline);
+  border-radius: 1.5rem;
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  box-shadow: 0 24px 60px -18px rgb(20 30 24 / 0.28);
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog.biomed-dialog {
+    transform: scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.biomed-dialog {
+    transition-duration: 0.1s;
+  }
+}
+
+dialog.biomed-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.biomed-dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgb(20 30 24 / 0);
+  transition-property: background-color, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+:is(dialog.biomed-dialog[open]):where(:not([data-closing])) {
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: scale(1);
+
+    @starting-style {
+      transform: scale(0.94);
+    }
+  }
+
+  &::backdrop {
+    background-color: rgb(20 30 24 / 0.5);
+    backdrop-filter: blur(3px);
+
+    @starting-style {
+      background-color: rgb(20 30 24 / 0);
+    }
+  }
+}
+
+/* ============================================================================
+   Tabela Responsiva com Sticky Headers + Container Query Cards (< 600px)
+   ============================================================================ */
+.table-wrapper {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(440px, 65dvh);
+  container-type: inline-size;
+  border-radius: 0.875rem;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--bg-surface);
+  overscroll-behavior: contain;
+}
+
+.responsive-table {
+  inline-size: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: start;
+  font-size: 0.9375rem;
+}
+
+.responsive-table thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+.responsive-table thead th {
+  text-align: start;
+  background-color: var(--bg-surface-soft);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  border-block-end: 1px solid var(--border-hairline);
+  white-space: nowrap;
+}
+
+.responsive-table tbody th,
+.responsive-table tbody td {
+  text-align: start;
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  border-block-end: 1px solid var(--border-hairline);
+  vertical-align: middle;
+}
+
+.responsive-table tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background-color: var(--bg-surface);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.responsive-table tbody tr:last-child th,
+.responsive-table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+@container (width < 600px) {
+  .responsive-table,
+  .responsive-table thead,
+  .responsive-table tbody,
+  .responsive-table tr,
+  .responsive-table th,
+  .responsive-table td {
+    display: block;
+  }
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table tbody {
+    padding: 0.625rem;
+  }
+
+  .responsive-table tr {
+    margin-block-end: 0.75rem;
+    border: 1px solid var(--border-hairline);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--bg-surface);
+  }
+
+  .responsive-table tr:last-child {
+    margin-block-end: 0;
+  }
+
+  .responsive-table tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    background-color: var(--bg-surface-soft);
+    border-block-end: 1px solid var(--border-hairline);
+  }
+
+  .responsive-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding-block: 0.625rem;
+    padding-inline: 0.875rem;
+  }
+
+  .responsive-table[data-table="winners"] td:nth-child(2)::before {
+    content: var(--label-2, "CPF") ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .responsive-table[data-table="winners"] td:nth-child(3)::before {
+    content: var(--label-3, "Prêmio") ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .responsive-table[data-table="winners"] td:nth-child(4)::before {
+    content: var(--label-4, "Horário") ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .responsive-table[data-table="admin-prizes"] td:nth-child(2)::before {
+    content: var(--label-2, "Categoria") ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .responsive-table[data-table="admin-prizes"] td:nth-child(3)::before {
+    content: var(--label-3, "Status") ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .responsive-table[data-table="admin-prizes"] td:nth-child(4)::before {
+    content: var(--label-4, "Ações") ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+}
+
+/* ============================================================================
+   Suporte a High Contrast / Forced Colors Mode
+   ============================================================================ */
+.table-wrapper.table-plain {
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.table-wrapper.table-plain .responsive-table thead th,
+.table-wrapper.table-plain .responsive-table tbody th {
+  background-color: var(--bg-page);
+}
+
+@media (forced-colors: active) {
+  .biomed-panel,
+  dialog.biomed-dialog,
+  .table-wrapper,
+  .roleta-input {
+    border: 1px solid CanvasText;
+    background-color: Canvas;
+    color: CanvasText;
+  }
+
+  .biomed-tab[aria-selected="true"]::after,
+  .nav-link[aria-current="page"]::after {
+    border-block-end-color: Highlight;
+  }
+}
