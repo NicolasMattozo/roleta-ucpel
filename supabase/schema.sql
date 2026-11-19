@@ -71,7 +71,7 @@ CREATE INDEX IF NOT EXISTS idx_spins_spun_at
   ON public.spins (spun_at DESC);
 
 -- ==============================================================================
--- Segurança (RLS - Row Level Security)
+-- Segurança (RLS - Row Level Security) e Permissões
 -- ==============================================================================
 -- O acesso aos dados ocorre exclusivamente pelas rotas server-side do Next.js
 -- usando SUPABASE_SERVICE_ROLE_KEY (protegendo CPFs completos conforme a LGPD).
@@ -79,6 +79,21 @@ ALTER TABLE public.roulette_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.participants ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.prizes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.spins ENABLE ROW LEVEL SECURITY;
+
+REVOKE ALL ON TABLE
+  public.roulette_settings,
+  public.participants,
+  public.prizes,
+  public.spins
+FROM PUBLIC, anon, authenticated;
+
+GRANT USAGE ON SCHEMA public TO service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE
+  public.roulette_settings,
+  public.participants,
+  public.prizes,
+  public.spins
+TO service_role;
 
 -- ==============================================================================
 -- Validador Oficial de Dígitos Verificadores do CPF
