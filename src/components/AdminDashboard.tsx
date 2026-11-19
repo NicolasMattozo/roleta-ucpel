@@ -57,7 +57,6 @@ export function AdminDashboard({
   const confirmDialogRef = useRef<HTMLDialogElement | null>(null);
 
   const passwordId = useId();
-  const passwordHintId = useId();
   const confirmTitleId = useId();
   const prizeNameId = useId();
   const prizeCatId = useId();
@@ -345,20 +344,13 @@ export function AdminDashboard({
               >
                 Senha administrativa
               </label>
-              <span
-                id={passwordHintId}
-                className="mt-0.5 mb-1.5 block text-xs text-[var(--text-secondary)]"
-              >
-                Definida na variável ADMIN_PASSWORD.
-              </span>
-              <div className="relative">
+              <div className="relative mt-1.5">
                 <input
                   id={passwordId}
                   name="password"
                   type={showPassword ? "text" : "password"}
                   required
                   autoComplete="current-password"
-                  aria-describedby={passwordHintId}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="roleta-input pr-12"
